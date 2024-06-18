@@ -6,10 +6,12 @@ from rest_framework import status
 from scrum_board_backend.serializers import TodoItemSerializer
 from todos.models import Todos
 from rest_framework.authtoken.models import Token
+from django.http import Http404
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class loginView(ObtainAuthToken):
-
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
@@ -22,6 +24,8 @@ class loginView(ObtainAuthToken):
         })
 
 class TodoItemView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes=[IsAuthenticated]
     def get(self, request, format=None):
         todos = Todos.objects.all()
         serializer = TodoItemSerializer(todos, many=True)
@@ -33,8 +37,31 @@ class TodoItemView(APIView):
             data['assignee'] = request.user.id
         serializer = TodoItemSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()  # Neues Todos-Objekt wird erstellt
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-        
+    
+    def patch(self, request, pk, format=None):
+        todo = self.get_object(pk)
+        data = request.data.copy()
+        if 'assignee' not in data:
+            data['assignee'] = request.user.id
+        serializer = TodoItemSerializer(todo, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def delete(self, request, pk, format=None):
+        todo = self.get_object(pk)
+        todo.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+    def get_object(self, pk):
+        try:
+            return Todos.objects.get(pk=pk)
+        except Todos.DoesNotExist:
+            raise Http404
