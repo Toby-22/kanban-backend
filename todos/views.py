@@ -42,7 +42,7 @@ class TodoItemView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
-    def patch(self, request, pk, format=None):
+    def put(self, request, pk, format=None):
         todo = self.get_object(pk)
         data = request.data.copy()
         if 'assignee' not in data:

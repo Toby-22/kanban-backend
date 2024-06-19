@@ -21,7 +21,7 @@ from todos.views import TodoItemView, loginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todos/', TodoItemView.as_view()),
+    path('tasks/', TodoItemView.as_view()),
     path('login/', loginView.as_view()),
-    path('todos/<int:pk>/', TodoItemView.as_view()),
+    path('tasks/<int:pk>/', TodoItemView.as_view()),
 ]
