@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from contacts.views import ContactView
 from todos.views import TodoItemView, loginView
 
 urlpatterns = [
@@ -24,4 +25,6 @@ urlpatterns = [
     path('tasks/', TodoItemView.as_view()),
     path('login/', loginView.as_view()),
     path('tasks/<int:pk>/', TodoItemView.as_view()),
+    path('contact/', ContactView.as_view()),
+    path('contact/<int:pk>/', ContactView.as_view()),
 ]
