@@ -26,10 +26,15 @@ class loginView(ObtainAuthToken):
 class TodoItemView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes=[IsAuthenticated]
-    def get(self, request, format=None):
-        todos = Todos.objects.all()
-        serializer = TodoItemSerializer(todos, many=True)
-        return Response(serializer.data)
+    def get(self, request, pk=None, format=None):
+        if pk:
+            todo = self.get_object(pk)
+            serializer = TodoItemSerializer(todo)
+            return Response(serializer.data)
+        else:
+            todos = Todos.objects.all()
+            serializer = TodoItemSerializer(todos, many=True)
+            return Response(serializer.data)
     
     def post(self, request, format=None):
         data = request.data.copy()
