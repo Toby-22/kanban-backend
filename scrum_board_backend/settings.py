@@ -29,7 +29,8 @@ ALLOWED_HOSTS = [
      'localhost:4200',
      'localhost',
      'http://localhost:4200/',
-     '127.0.0.1'
+     '127.0.0.1',
+     'https://tobias-buchner.developerakademie.net/angular-projects/kanban/'
 ]
 
 # CORS_ALLOWED_ORIGINS = [

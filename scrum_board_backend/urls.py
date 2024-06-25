@@ -27,4 +27,5 @@ urlpatterns = [
     path('tasks/<int:pk>/', TodoItemView.as_view()),
     path('contact/', ContactView.as_view()),
     path('contact/<int:pk>/', ContactView.as_view()),
+    path('contact/<int:pk>/', ContactView.as_view()),
 ]
