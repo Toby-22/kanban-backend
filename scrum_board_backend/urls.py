@@ -17,15 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from contacts.views import ContactView
-from todos.views import TodoItemView, loginView
+from contacts.views import RegisterView, UserListView, UserDetailView
+from todos.views import TodoItemView, loginView 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tasks/', TodoItemView.as_view()),
     path('login/', loginView.as_view()),
     path('tasks/<int:pk>/', TodoItemView.as_view()),
-    path('contact/', ContactView.as_view()),
-    path('contact/<int:pk>/', ContactView.as_view()),
-    path('contact/<int:pk>/', ContactView.as_view()),
+    path('register/', RegisterView.as_view()),
+    path('users/', UserListView.as_view(), name='user-list'),
+    path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
 ]

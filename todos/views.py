@@ -38,7 +38,6 @@ class TodoItemView(APIView):
     
     def post(self, request, format=None):
         data = request.data.copy()
-        # Entfernen Sie die `assignee`-Überprüfung hier
         serializer = TodoItemSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -48,7 +47,6 @@ class TodoItemView(APIView):
     def put(self, request, pk, format=None):
         todo = self.get_object(pk)
         data = request.data.copy()
-        # Entfernen Sie die `assignee`-Überprüfung hier
         serializer = TodoItemSerializer(todo, data=data)
         if serializer.is_valid():
             serializer.save()

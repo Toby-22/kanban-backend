@@ -1,9 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Contact(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=50)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='contact_profile', null=True, blank=True)
     job_position = models.CharField(max_length=30, null=True)
     
     def __str__(self) -> str:
