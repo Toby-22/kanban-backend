@@ -1,9 +1,13 @@
-from django.db import models
+""" contac class """
 from django.contrib.auth.models import User
+from django.db import models
+
 
 class Contact(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='contact_profile', null=True, blank=True)
+    """ contact model """
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='contact_profile',
+                                null=True, blank=True)
     job_position = models.CharField(max_length=30, null=True)
-    
     def __str__(self) -> str:
-        return f'{self.id} {self.first_name} {self.last_name} {self.email} {self.job_position}'
+        """ return the job position of a contact """
+        return f'{self.job_position}'
