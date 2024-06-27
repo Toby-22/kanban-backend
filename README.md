@@ -1,8 +1,8 @@
 Übersicht
 
 Dieses Projekt ist das Backend einer Scrum Board Anwendung, entwickelt mit Django und Django REST Framework. Es bietet APIs für das Management von Aufgaben (Todos) und Kontakten (Contacts).
-Inhaltsverzeichnis
 
+Inhaltsverzeichnis
     Technologien
     Installation
         Voraussetzungen
@@ -18,17 +18,17 @@ Inhaltsverzeichnis
     Lizenz
 
 Technologien
-    Django
-    Django REST Framework
-    SQLite (Standard)
-    Docker (optional)
+Django
+Django REST Framework
+SQLite (Standard)
+Docker (optional)
 
 Installation
 Voraussetzungen
-    Python 3.8 oder höher
-    Pipenv oder Virtualenv (empfohlen)
-    Git
-    SQLite (Standard) oder ein anderes konfiguriertes Datenbanksystem
+Python 3.8 oder höher
+Pipenv oder Virtualenv (empfohlen)
+Git
+SQLite (Standard) oder ein anderes konfiguriertes Datenbanksystem
 
 Schritte
 Repository klonen:
@@ -37,7 +37,7 @@ cd scrum_board_backend
 
 Virtuelle Umgebung erstellen und aktivieren:
 python -m venv venv
-source venv/bin/activate  # Auf Windows: venv\Scripts\activate
+source venv/bin/activate # Auf Windows: venv\Scripts\activate
 
 Abhängigkeiten installieren:
 pip install -r requirements.txt
@@ -70,14 +70,13 @@ Authentifizierung
         json
 
 {
-  "username": "username",
-  "password": "password"
+"username": "username",
+"password": "password"
 }
 
 Antwort:
 
 json
-
         {
           "token": "your-token",
           "user_id": 1,
@@ -85,7 +84,6 @@ json
         }
 
 Todo API
-
     Abrufen aller Todos: GET /todos/
     Abrufen eines Todo: GET /todos/{id}/
     Erstellen eines Todo: POST /todos/
@@ -93,7 +91,6 @@ Todo API
     Löschen eines Todo: DELETE /todos/{id}/
 
 Kontakt API
-
     Abrufen aller Kontakte: GET /contacts/
     Abrufen eines Kontakts: GET /contacts/{id}/
     Erstellen eines Kontakts: POST /contacts/
@@ -101,9 +98,8 @@ Kontakt API
     Löschen eines Kontakts: DELETE /contacts/{id}/
 
 Nutzung
-
     Starten Sie den Entwicklungsserver:
     python manage.py runserver
 
-    Öffnen Sie im Browser http://127.0.0.1:8000/admin/ und melden Sie sich mit den Superuser-Zugangsdaten an.
+    Öffnen Sie im Browser http://127.0.0.1:8000/admin/ und melden Sie sich mit den Superuser Zugangsdaten an.
     Verwenden Sie http://127.0.0.1:8000/api/ für API-Aufrufe.
